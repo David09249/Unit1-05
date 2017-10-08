@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>// Created by: David Wang
+// Created on: Oct-2017
+// Created for: ICS3U
+// This program calculates the price of a pizza, given diameter
+
+import PlaygroundSupport
+
+import UIKit
+
+class ViewController : UIViewController, UITextFieldDelegate {
+    // this is the main view controller, that will show the UIKit elements
+    
+    // properties
+    var diameterLabel : UILabel!
+    var priceLabel : UILabel!
+    var diameterTextField : UITextField!
+    var calculateButton : UIButton!
+    
+    override func viewDidLoad() {
+        // UI
+        super.viewDidLoad()
+        
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.view = view
+        
+        //diameterLabel
+        diameterLabel = UILabel()
+        diameterLabel.text = "Enter the diameter of the pizza:"
+        view.addSubview(diameterLabel)
+        diameterLabel.translatesAutoresizingMaskIntoConstraints = false
+        diameterLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        diameterLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        
+        //diameterBox
+        diameterTextField = UITextField()
+        
+        diameterTextField.bounds = CGRect(x: 0, y: 0, width: view.bounds.width / 2, height: 50)
+        diameterTextField.backgroundColor = UIColor.lightGray
+        
+        diameterTextField.borderStyle = UITextBorderStyle.roundedRect
+        
+        diameterTextField.font = UIFont.systemFont(ofSize: 17)
+        diameterTextField.textAlignment = .center
+        
+        diameterTextField.placeholder = "Enter Diameter"
+        diameterTextField.clearButtonMode = UITextFieldViewMode.whileEditing
+        
+        diameterTextField.delegate = self
+        view.addSubview(diameterTextField)
+        diameterTextField.translatesAutoresizingMaskIntoConstraints = false
+        diameterTextField.topAnchor.constraint(equalTo: diameterLabel.bottomAnchor, constant: 20).isActive = true
+        diameterTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        
+        // calculate button
+        calculateButton = UIButton()
+        calculateButton.setTitle("Calculate", for: .normal)
+        calculateButton.setTitleColor(.blue, for: .normal)
+        calculateButton.addTarget(self, action: #selector(priceText), for: .touchUpInside)
+        view.addSubview(calculateButton)
+        calculateButton.translatesAutoresizingMaskIntoConstraints = false
+        calculateButton.topAnchor.constraint(equalTo: diameterTextField.bottomAnchor, constant: 20).isActive = true
+        calculateButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        
+        // priceLabel
+        priceLabel = UILabel()
+        
+        // priceLabel.text = "the price is: " + "$" + ""
+        
+        view.addSubview(priceLabel)
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel.topAnchor.constraint(equalTo: calculateButton.bottomAnchor, constant: 20).isActive = true
+        priceLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        
+    }
+    
+     @objc func priceText() {
+        //
+        var diameter = Double(diameterTextField.text!)
+        let LABOUR_COST = 0.75
+        let RENT_COST = 1.00
+        let MATERIAL_COST = 0.50
+        let HST = 0.13
+        let BEFORE_TAX = LABOUR_COST + RENT_COST + MATERIAL_COST * diameter!
+        let TAX_COST = BEFORE_TAX * HST
+        let SUBTOTAL = BEFORE_TAX + TAX_COST
+        
+        priceLabel.text = String(format: "The price is $%.02f", SUBTOTAL) 
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true 
+    }
+}
+
+PlaygroundPage.current.liveView = ViewController()
+</string>
+			<key>ModifiedRange</key>
+			<string>{145, 3830}</string>
+			<key>OriginalContent</key>
+			<string>show("What is your name?")
+
+let name = ask("Name")
+
+show("Hi " + name)
+</string>
+			<key>OriginalRange</key>
+			<string>{145, 71}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Answers.playgroundchapter/Pages/Text.playgroundpage/Contents.swift</string>
+</dict>
+</plist>
